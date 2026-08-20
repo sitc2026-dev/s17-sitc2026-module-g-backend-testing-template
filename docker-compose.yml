@@ -1,0 +1,20 @@
+services:
+  app:
+    build: .
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./run.php:/app/run.php
+      - ./autoload.php:/app/autoload.php
+      - ./phpunit.xml:/app/phpunit.xml
+      - ./out:/app/out
+    command: ["php", "run.php"]
+
+  test:
+    build: .
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./autoload.php:/app/autoload.php
+      - ./phpunit.xml:/app/phpunit.xml
+    command: ["phpunit"]
